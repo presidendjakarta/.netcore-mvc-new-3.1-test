@@ -22,11 +22,23 @@ namespace testmvc.Controllers
         {
             return View();
         }
-        
+
+        public IActionResult Dapat([FromForm]DataSiswa result){
+            ViewData["nama"] =  result.i_name;
+            ViewData["email"] =  result.i_email;
+
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+    }
+
+    public class DataSiswa{
+        public string i_email{get;set;}
+        public string i_name{get;set;}
     }
 }
